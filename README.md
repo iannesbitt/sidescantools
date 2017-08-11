@@ -1,7 +1,7 @@
 # sidescantools
 Simple tools for use with PyHum (https://github.com/dbuscombe-usgs/pyhum)
 
-This software is partially modified from code written by Dr. Daniel Buscombe, Northern Arizona University, formerly of the USGS. As such, it is public domain. See license file.
+This software is partially modified from code written by Dr. Daniel Buscombe, Northern Arizona University, formerly of the USGS.
 
 ## Requirements
 - Unix-based command line
