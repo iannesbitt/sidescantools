@@ -6,7 +6,7 @@ This software is partially modified from code written by Dr. Daniel Buscombe, No
 ## Requirements
 - Unix-based command line
 - Python 2.7
-- `[PyHum](https://github.com/dbuscombe-usgs/pyhum)`
+- [`PyHum`](https://github.com/dbuscombe-usgs/pyhum)
 
 ## Setup
 ```
