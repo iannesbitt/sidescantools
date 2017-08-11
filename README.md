@@ -13,7 +13,7 @@ This software is partially modified from code written by Dr. Daniel Buscombe, No
 cd ~/bin/ # replace 'bin' with the folder you'd like to install in
 git clone https://github.com/iannesbitt/sidescantools.git
 ln -s sidescantools/humss.py ./humss; ln -s sidescantools/humall.sh ./humall # create links
-export $PATH:~/bin/ # adds the bin folder in your home directory to the PATH variable
+export PATH=$PATH:~/bin/ # adds the bin folder in your home directory to the PATH variable
 # to make this permanent, add the above line to the end of your ~/.bashrc file
 ```
 
