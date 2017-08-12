@@ -29,7 +29,7 @@ export PATH=$PATH:~/bin/                        # you will need to change this i
 ```
 
 ## Usage
-### humss.py (single step, single file processing)
+### hum\*.py (single step, single file processing)
 From command line:
 
 ```
