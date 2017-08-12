@@ -7,7 +7,7 @@ This software is partially modified from code written by Dr. Daniel Buscombe, No
 - Unix-based command line
 - Python 2.7
 - [`PyHum`](https://github.com/dbuscombe-usgs/pyhum)
-- The more RAM the better. 64GB or more would be ideal, but if like me you lack the resources for that, you can probably get away with (allocating a bunch of swap space)[http://www.thegeekstuff.com/2010/08/how-to-add-swap-space/?utm_source=feedburner].
+- The more RAM the better. 64GB or more would be ideal, but if like me you lack the resources for that, you can probably get away with [allocating a bunch of swap space](http://www.thegeekstuff.com/2010/08/how-to-add-swap-space/?utm_source=feedburner).
 
 ## Setup
 ```
