@@ -1,5 +1,5 @@
 # sidescantools
-Simple tools for use with PyHum (https://github.com/dbuscombe-usgs/pyhum)
+Simple shell wrapper for PyHum (https://github.com/dbuscombe-usgs/pyhum)
 
 This software is partially modified from code written by Dr. Daniel Buscombe, Northern Arizona University, formerly of the USGS.
 
@@ -19,21 +19,21 @@ export PATH=$PATH:~/bin/ # adds the bin folder in your home directory to the end
 ```
 
 ## Usage
-### humss.py (singular file processing)
+### humss.py (single step processing)
 From command line:
 
 ```
-humss -i fieldwork/data_directory/R00001.DAT -s fieldwork/data_directory/R00001/
+humread -i fieldwork/data_directory/R00001.DAT -s fieldwork/data_directory/R00001/ -e 26984 -t 20 -f 1
 ```
 
-where the argument `-i` precedes the path of a .DAT file, and the `-s` argument precedes the path of the comparably named data folder.
+where the argument `-i` precedes the path of a .DAT file, `-s` precedes the path of the comparably named data folder, the `-e` argument precedes the EPSG code, `-t` precedes the temperature in degrees C, and the `-f` argument precedes a binary digit describing whether or not to flip the port and starboard sidescan channels (in case the transducer is mounted backwards).
 
 ### humall.sh (current directory processing)
-Processes all .DAT and related data folders in current directory. From command line:
+Processes all .DAT and related data folders in current directory using all steps in PyHum (read, correct, shadow removal, textural analysis, mapping, texture mapping, and e1/e2 value calculation). This is usually super memory and processor intensive, and can take a very long time. From command line:
 
 ```
 cd fieldwork/data_directory/
-humall
+humall -e 26984 -t 20 -f 1
 ```
 
-You must be in a data directory for this command to work properly.
+where the `-e` argument precedes the EPSG code, `-t` precedes the temperature in degrees C, and the `-f` argument precedes a binary digit describing whether or not to flip the port and starboard sidescan channels. You must be in a data directory for this command to work properly.
