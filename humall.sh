@@ -1,26 +1,29 @@
 #!/bin/bash
 
-EPSG=26983
-TEMP=20
-FLIP=0
+epsg=26983
+temp=20
+flip=0
+stop=0
+bin_dir="bin/sidescantools"
 
 while [[ $# -gt 1 ]]; do
   key="$1"
 
   case $key in
     -e|--epsg-code)
-    EPSG="$2"
-    shift # past argument
+    epsg="$2"
+    shift # next argument
     ;;
     -t|--temperature)
-    TEMP="$2"
+    temp="$2"
     shift # past argument
     ;;
     -f|--flip-transducers)
-    FLIP="$2"
+    flip="$2"
     shift # past argument
     ;;
     -h|--help)
+    stop=1
     echo "Takes three arguments:"
     echo "[-e | --epsg-code]        - numeric EPSG code (defaults to 26983, Maine East State Plane)"
     echo "[-t | --temperature]      - temp in degrees C (defaults to 20)"
@@ -35,19 +38,21 @@ while [[ $# -gt 1 ]]; do
   shift
 done
 
-# sidescan processing of entire folders using PyHum
-for f in *.DAT; do
-  filename=$(basename "$f")
-  dn="${filename%.*}"
-  for dir in $dn/; do
-    #echo "doing $f and directory $dir"
-    ./humread.py -i $f -s $dir -e $EPSG -f $FLIP
-    ./humcorrect.py -i $f -s $dir -t $TEMP
-    ./humshadows.py -i $f -s $dir
-    ./humtexture.py -i $f -s $dir
-    ./hummap.py -i $f -s $dir -e $EPSG
-    ./hummaptexture.py -i $f -s $dir -e $EPSG
-    ./hume1e2.py -i $f -s $dir -e $EPSG -t $TEMP
-
+if [ "$stop" -eq "0" ]; then
+  # sidescan processing of entire folders using PyHum
+  for f in *.DAT; do
+    filename=$(basename "$f")
+    dn="${filename%.*}"
+    for dir in $dn/; do
+      #echo "doing $f and directory $dir"
+      "$HOME"/"$bin_dir"/humread.py -i $f -s $dir -e $epsg -t $temp -f $flip
+      "$HOME"/"$bin_dir"/humcorrect.py -i $f -s $dir -t $temp
+      "$HOME"/"$bin_dir"/humshadows.py -i $f -s $dir
+      "$HOME"/"$bin_dir"/humtexture.py -i $f -s $dir
+      "$HOME"/"$bin_dir"/hummap.py -i $f -s $dir -e $epsg
+      "$HOME"/"$bin_dir"/hummaptexture.py -i $f -s $dir -e $epsg
+      "$HOME"/"$bin_dir"/hume1e2.py -i $f -s $dir -e $epsg -t $temp
+  
+    done
   done
-done
+fi

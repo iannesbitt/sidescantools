@@ -17,6 +17,7 @@ if __name__ == '__main__':
     humfile = ''; sonpath = ''
 
     flip_lr = 0 # default to 'do not flip port and starboard channels" if no argument given
+    temp = 20 # default to 20 degrees Celsius water temperature
     cs = 26983 # default to Maine East State Plane meters if no argument given
 
     # parse inputs to variables
@@ -35,6 +36,8 @@ if __name__ == '__main__':
           sonpath = arg
        elif opt in ("-e"):
           cs = arg
+       elif opt in ("-t"):
+          temp = arg
        elif opt in ("-f"):
           flip_lr = arg
 
@@ -50,9 +53,6 @@ if __name__ == '__main__':
        print 'A *.SON directory is required!!!!!!'
        Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
        sonpath = askdirectory()
-
-    if not cs:
-       print 'A valid EPSG number is required!!!!!!'
 
 
     # print given arguments to screen and convert data type where necessary

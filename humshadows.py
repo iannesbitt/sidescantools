@@ -30,8 +30,7 @@ if __name__ == '__main__':
           humfile = arg
        elif opt in ("-s"):
           sonpath = arg
-       elif opt in ("-e"):
-          cs = arg
+
 
     # prompt user to supply file if no input file given
     if not humfile:
@@ -44,9 +43,6 @@ if __name__ == '__main__':
        print 'A *.SON directory is required!!!!!!'
        Tk().withdraw() # we don't want a full GUI, so keep the root window from appearing
        sonpath = askdirectory()
-
-    if not cs:
-       print 'A valid EPSG number is required!!!!!!'
 
 
     # print given arguments to screen and convert data type where necessary
