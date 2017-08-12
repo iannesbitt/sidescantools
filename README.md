@@ -11,7 +11,6 @@ This software is partially modified from code written by Dr. Daniel Buscombe, As
 
 ## Setup
 ```
-
 cd ~/bin/                                       # replace 'bin' with the folder you'd like to install in
 git clone https://github.com/iannesbitt/sidescantools.git
 ln -s sidescantools/humread.py ./humread        # create links
