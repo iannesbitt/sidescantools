@@ -1,6 +1,6 @@
 # How to install PyHum on your Linux box
-### A step-by-step guide
-*August 12, 2017*
+## A step-by-step guide
+August 12, 2017
 
 ## 1. Install Anaconda
 
@@ -18,9 +18,15 @@ conda install -c conda-forge basemap-data-hires
 pip install numpy==1.11.3
 ```
 
-## 3. Edit the `_pyhum_correct.py` file
+## 3. Install PyHum
 ```
-cd $HOME/anaconda2/lib/python2.7/site-packages/PyHum/
+pip uninstall PyHum
+pip install PyHum
+```
+
+## 4. Edit the `_pyhum_correct.py` file
+```
+cd $HOME/anaconda2/lib/python2.7/site-packages/PyHum/ # you may need to change this depending on where Anaconda was installed
 nano _pyhum_correct.py
 ```
 
