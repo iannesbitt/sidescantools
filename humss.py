@@ -142,10 +142,10 @@ if __name__ == '__main__':
     ## calculate and map the e1 and e2 acoustic coefficients from the downward-looking sonar
     PyHum.e1e2(humfile, sonpath, cs2cs_args, ph, temp, salinity, beam, transfreq, integ, numclusters, doplot)
 
-    res = 0
-    nn = 5 # nearest neighbors used for gridding
-    noisefloor = 10 # noise threshold in dB W
-    weight = 1 ##based on grazing angle and inverse distance weighting
+    #res = 0
+    #nn = 5 # nearest neighbors used for gridding
+    #noisefloor = 10 # noise threshold in dB W
+    #weight = 1 ##based on grazing angle and inverse distance weighting
 
     ## create mosaic out of all chunks with weighting according to distance from nadir, grazing angle, or both
-    PyHum.mosaic(humfile, sonpath, cs2cs_args, res, nn, noisefloor, weight)
+    #PyHum.mosaic(humfile, sonpath, cs2cs_args, res, nn, noisefloor, weight)
