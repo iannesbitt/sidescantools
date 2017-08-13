@@ -1,4 +1,4 @@
-#!/home/geodynamics/anaconda2/bin/python
+#!/home/user/anaconda2/bin/python
 
 ## Modified from Daniel Buscombe's starter script at https://github.com/dbuscombe-usgs/pyhum
 ## Supply .DAT file using -i and SON folder using -s

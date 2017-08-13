@@ -5,6 +5,7 @@ temp=20
 flip=0
 stop=0
 bin_dir="bin/sidescantools"
+python_loc="$HOME/anaconda2/bin/python"
 
 while [[ $# -gt 1 ]]; do
   key="$1"
@@ -45,13 +46,13 @@ if [ "$stop" -eq "0" ]; then
     dn="${filename%.*}"
     for dir in $dn/; do
       #echo "doing $f and directory $dir"
-      "$HOME"/"$bin_dir"/humread.py -i $f -s $dir -e $epsg -t $temp -f $flip
-      "$HOME"/"$bin_dir"/humcorrect.py -i $f -s $dir -t $temp
-      "$HOME"/"$bin_dir"/humshadows.py -i $f -s $dir
-      "$HOME"/"$bin_dir"/humtexture.py -i $f -s $dir
-      "$HOME"/"$bin_dir"/hummap.py -i $f -s $dir -e $epsg
-      "$HOME"/"$bin_dir"/hummaptexture.py -i $f -s $dir -e $epsg
-      "$HOME"/"$bin_dir"/hume1e2.py -i $f -s $dir -e $epsg -t $temp
+      "$python_loc" "$HOME"/"$bin_dir"/humread.py -i $f -s $dir -e $epsg -t $temp -f $flip
+      "$python_loc" "$HOME"/"$bin_dir"/humcorrect.py -i $f -s $dir -t $temp
+      "$python_loc" "$HOME"/"$bin_dir"/humshadows.py -i $f -s $dir
+      "$python_loc" "$HOME"/"$bin_dir"/humtexture.py -i $f -s $dir
+      "$python_loc" "$HOME"/"$bin_dir"/hummap.py -i $f -s $dir -e $epsg
+      "$python_loc" "$HOME"/"$bin_dir"/hummaptexture.py -i $f -s $dir -e $epsg
+      "$python_loc" "$HOME"/"$bin_dir"/hume1e2.py -i $f -s $dir -e $epsg -t $temp
   
     done
   done
