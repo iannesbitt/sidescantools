@@ -56,12 +56,12 @@ if __name__ == '__main__':
 
 
     # for texture calcs
+    win = 100 # pixel window
     shift = 10 # pixel shift
-    density =win/2 # win/2 
+    density = win/2 # win/2 
     numclasses = 4 # number of discrete classes for contouring and k-means
     maxscale = 20 # Max scale as inverse fraction of data length (for wavelet analysis)
     notes = 4 # Notes per octave (for wavelet analysis)
-    win = 100 # reset pixel window
 
     ## Calculate texture lengthscale maps using the method of Buscombe et al. (2015)
     PyHum.texture(humfile, sonpath, win, shift, doplot, density, numclasses, maxscale, notes)
