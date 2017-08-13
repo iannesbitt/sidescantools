@@ -1,3 +1,4 @@
+#!/home/geodynamics/anaconda2/bin/python
 
 ## Modified from Daniel Buscombe's starter script at https://github.com/dbuscombe-usgs/pyhum
 ## Supply .DAT file using -i and SON folder using -s
@@ -20,7 +21,7 @@ if __name__ == '__main__':
 
     # parse inputs to variables
     try:
-       opts, args = getopt.getopt(argv,"hi:s:")
+       opts, args = getopt.getopt(argv,"hi:s:t:")
     except getopt.GetoptError:
          print 'error'
          sys.exit(2)
