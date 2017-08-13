@@ -27,7 +27,7 @@ export PATH=$PATH:~/bin/                        # you will need to change this i
 # to make this permanent, add the above line to the end of your ~/.bashrc file
 ```
 
-*You may need to change the *`humread.py`* file if you have a different Humminbird model than the one written into the code. A note: if you have a model other than the examples given by PyHum (998, 997, 1198, 1199), experiment with different model numbers as they may work with your model based on how your specific model is set up to record data. For example, the 999 model I use actually operates similarly to the 1199, so I use *`model = 1199`* in the *`humread.py`* file.*
+*You may need to change the* `humread.py` *file if you have a different Humminbird model than the one written into the code. A note: if you have a model other than the examples given by PyHum (998, 997, 1198, 1199), experiment with different model numbers as they may work with your model based on how your specific model is set up to record data. For example, the 999 model I use actually operates similarly to the 1199, so I use* `model = 1199` *in the* `humread.py` *file.*
 
 ## Usage
 ### hum\*.py (single step, single file processing)
