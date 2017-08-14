@@ -59,6 +59,8 @@ if __name__ == '__main__':
 
     doplot = 1 #yes
 
+    # reading specific settings
+    cs2cs_args = "epsg:"+str(cs)
 
     # for mapping
     res = 99 # grid resolution in metres
