@@ -66,4 +66,4 @@ for d in "$pfx"*/; do
 done
 
 echo "mosaicing . . ."
-gdalwarp -srcalpha -dstalpha -t_srs EPSG:"$epsg" --config GDAL_CACHEMAX 3000 -wm 3000 -r max tmp/*.tif "$outfile".tif
+gdalwarp -srcalpha -dstalpha -t_srs EPSG:"$epsg" --config GDAL_CACHEMAX 3000 -wm 3000 tmp/*.tif "$outfile".tif
