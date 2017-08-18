@@ -6,11 +6,13 @@ This software is partially modified from code written by Dr. Daniel Buscombe, As
 ## Requirements
 - Unix-based command line
 - Python 2.7 (Anaconda works best)
+- [`gdal`](http://www.gdal.org/)
 - [`PyHum`](https://github.com/dbuscombe-usgs/pyhum)
-- The more RAM the better. 64GB or more would be ideal, but if like me you lack the resources for that, you can probably get away with [allocating a bunch of swap space](http://www.thegeekstuff.com/2010/08/how-to-add-swap-space/?utm_source=feedburner).
+- The more RAM the better. 32GB or more would be ideal, but you can probably get away with [allocating a bunch of swap space](http://www.thegeekstuff.com/2010/08/how-to-add-swap-space/?utm_source=feedburner).
 
 ## Setup
 ```
+sudo apt install gdal-bin libgdal-dev           # in case you don't already have GDAL installed
 cd ~/bin/                                       # replace 'bin' with the folder you'd like to install in
 git clone https://github.com/iannesbitt/sidescantools.git
 ln -s sidescantools/humread.py ./humread        # create links
@@ -21,6 +23,7 @@ ln -s sidescantools/hummap.py ./hummap          # create links
 ln -s sidescantools/hummaptexture.py ./hummaptexture # create links
 ln -s sidescantools/hume1e2.py ./hume1e2        # create links
 ln -s sidescantools/humall.sh ./humall          # create links
+ln -s sidescantools/kmz2geotiff.sh ./kmz2geotiff #create links
 
 # the following adds the bin folder in your home directory to the end of the PATH variable
 export PATH=$PATH:~/bin/                        # you will need to change this if you change your installation location
@@ -51,6 +54,20 @@ Processes all .DAT and related data folders in current directory using all steps
 ```
 cd fieldwork/data_directory/
 humall -e 26984 -t 20 -f 1
+# or
+humall --epsg-code 26984 --temperature 20 --flip-transducers 1
 ```
 
-where the `-e` argument precedes the EPSG code, `-t` precedes the temperature in degrees C, and the `-f` argument precedes a binary digit describing whether or not to flip the port and starboard sidescan channels. You must be in a data directory for this command to work properly.
+where the `-e` or `--epsg-code` argument precedes the EPSG code, `-t` or `--temperature` precedes the temperature in degrees C, and the `-f` or `--flip-transducers` argument precedes a binary digit describing whether or not to flip the port and starboard sidescan channels. You must be in a data directory for this command to work properly.
+
+### kmz2geotiff.sh (shell script that utilizes GDAL to translate KMZ images to GeoTIFF)
+Takes all KMZ archives with regular map images in them (not texture map images) in folders with the given prefix (defaults to "R", as Humminbird directories are typically named) and outputs as GeoTIFF in the given working directory. The `gdal_translate` step downsamples each sidescan image, as often they have far more pixel resolution than is necessary. The final step of the script uses `gdalwarp` to write all output GeoTIFFs in the working directory to a single mosaic. This can take some time depending on how many images there are, and the resultant merged image can be quite large (GB). This script will generally ignore KMZ files that are related to texture maps (though it will take a peek inside them to make sure).
+
+```
+cd fieldwork/data_directory/
+kmz2geotiff -e 26919 -w work_dir -p R -o mosaic_name
+# or
+kmz2geotiff --epsg-code 26919 --work-dir work_dir --prefix R --outfile mosaic_name
+```
+
+where the `-e` or `--epsg-code` argument precedes the EPSG code, `-w` or `--work-dir` precedes the given name of the your working directory (the script will make a new directory with this name), and `-o` or `--outfile` denotes the name of the GeoTIFF mosaic created from the extracted KMZ images. You must be in a data directory for this command to work properly.
