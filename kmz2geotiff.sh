@@ -1,8 +1,47 @@
 #!/bin/bash
 
-work="tmp" # working directory name
-pfx="R" # directory prefix ("R" for Humminbird / PyHum)
-epsg="4326"
+work="tmp" # default working directory name
+pfx="R" # default directory prefix ("R" for Humminbird / PyHum)
+epsg="4326" # default coordinate system output (WGS 84 Geographic)
+outfile="mosaic"
+
+while [[ $# -gt 1 ]]; do
+  key="$1"
+
+  case $key in
+    -e|--epsg-code)
+    epsg="$2" # EPSG code for the coordinate system of the output mosaic
+    shift # next argument
+    ;;
+    -w|--work-dir)
+    work="$2" # working directory name
+    shift # past argument
+    ;;
+    -p|--prefix)
+    pfx="$2" # prefix of the sidescan 'SON' directory (for Humminbird this is usually 'R', as in 'R00041')
+    shift # past argument
+    ;;
+    -o|--outfile)
+    pfx="$2" # output filename
+    shift # past argument
+    ;;
+    -h|--help)
+    stop=1
+    echo "Takes three arguments:"
+    echo "[-e | --epsg-code]        - numeric EPSG code (defaults to 4326, Geographic WGS 84)"
+    echo "[-w | --work-dir]         - working directory name (will be created if doesn't already exist)"
+    echo "[-p | --prefix]           - Humminbird directory prefix (generally 'R')"
+    echo "[-o | --outfile]          - name of the output mosaic geotiff"
+    exit 1
+    shift # past argument
+    ;;
+    *)
+    echo "Unknown argument. Use -h or --help."
+    ;;
+  esac
+  shift
+done
+
 
 mkdir "$work"
 
@@ -27,4 +66,4 @@ for d in "$pfx"*/; do
 done
 
 echo "mosaicing . . ."
-gdalwarp -srcalpha -dstalpha -t_srs EPSG:"$epsg" --config GDAL_CACHEMAX 3000 -wm 3000 tmp/*.tif merge.tif
+gdalwarp -srcalpha -dstalpha -t_srs EPSG:"$epsg" --config GDAL_CACHEMAX 3000 -wm 3000 tmp/*.tif "$outfile".tif
